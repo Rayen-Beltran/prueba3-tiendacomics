@@ -8,6 +8,7 @@ import lombok.Data;
 public class ComicDTO {
     public Integer id;
     public String titulo;
+    public String ISBN;
     public String editorial;
     public String autor;
     public String genero;
@@ -19,4 +20,7 @@ public class ComicDTO {
         this.id = id2;
     }
 
+    public Integer getId_comic() {
+        return id;
+    }
 }

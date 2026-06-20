@@ -32,4 +32,5 @@ public class Categoria {
     public Integer getId_categoria() {
         return id;
     }
+
 }

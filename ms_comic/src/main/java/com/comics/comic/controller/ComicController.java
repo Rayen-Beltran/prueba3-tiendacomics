@@ -41,7 +41,7 @@ public class ComicController {
     public ResponseEntity<ComicDTO> buscarPorId(@PathVariable Long id){
         log.info("Buscando cómic con ID: {}", id);
         try {
-            ComicDTO comic = comicService.buscarPorId(id);
+            ComicDTO comic = comicService.findById(id);
             return new ResponseEntity<>(comic, HttpStatus.OK);
         } catch (RuntimeException e) {
             log.error("Error al buscar cómic con ID: {}: {}", id, e.getMessage());

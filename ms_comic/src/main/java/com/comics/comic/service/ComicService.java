@@ -1,6 +1,8 @@
 package com.comics.comic.service;
 
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import jakarta.transaction.Transactional;
@@ -64,7 +66,7 @@ public class ComicService {
     }
 
     //buscar por id
-    public ComicDTO buscarPorId(Long id){
+    public ComicDTO findById(Long id){
         log.info("Buscando cómic con ID: {}", id);
         Comic comic = comicRepository.findById(id).orElseThrow(() -> new RuntimeException("¡El Cómic no existe en los registros!"));
         return convertirADTO(comic);
