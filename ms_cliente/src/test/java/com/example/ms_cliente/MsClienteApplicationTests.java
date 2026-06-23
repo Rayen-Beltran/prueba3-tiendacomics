@@ -1,4 +1,4 @@
-package com.example.ms_cliente.Service;
+package com.example.ms_cliente;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
