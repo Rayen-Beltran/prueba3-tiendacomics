@@ -1,7 +1,6 @@
 package com.comics.comic.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -66,10 +65,14 @@ public class ComicService {
     }
 
     //buscar por id
-    public ComicDTO findById(Long id){
+    public ComicDTO findById(Integer id) {
         log.info("Buscando cómic con ID: {}", id);
-        Comic comic = comicRepository.findById(id).orElseThrow(() -> new RuntimeException("¡El Cómic no existe en los registros!"));
-        return convertirADTO(comic);
+        List<Comic> comicOptional = comicRepository.findById(id);
+        if (comicOptional != null && !comicOptional.isEmpty()) {
+            return convertirADTO(comicOptional.get(0));
+        } else {
+            throw new RuntimeException("¡El Cómic no existe en los registros!");
+        }
     }
 
     //buscar por nombre exacto

@@ -41,7 +41,7 @@ public class TiendaController {
     public ResponseEntity<TiendaDTO> buscarPorId(@PathVariable Integer id){
         log.info("Buscando tienda con ID: {}", id);
         try {
-            TiendaDTO tienda = tiendaService.buscarPorId(id);
+            TiendaDTO tienda = tiendaService.findById(id);
             return new ResponseEntity<>(tienda, HttpStatus.OK);
         } catch (RuntimeException e) {
             log.error("Error al buscar tienda con ID: {}: {}", id, e.getMessage());

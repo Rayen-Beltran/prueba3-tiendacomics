@@ -55,7 +55,7 @@ public class TiendaService {
     }
 
     //buscar por id
-    public TiendaDTO buscarPorId(Integer id){
+    public TiendaDTO findById(Integer id){
         log.info("Buscando tienda con ID: {}", id);
         Tienda tienda = tiendaRepository.findById(id).orElseThrow(() -> new RuntimeException("¡La Tienda no existe en los registros!"));
         return convertirADTO(tienda);
