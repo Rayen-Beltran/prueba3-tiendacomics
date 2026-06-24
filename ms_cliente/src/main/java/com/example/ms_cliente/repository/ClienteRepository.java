@@ -8,6 +8,6 @@ import com.example.ms_cliente.model.Cliente;
 
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Integer>{ 
-    Cliente findByRut(String rut);
+    Cliente findByRut(Integer rut);
     Cliente findByCorreo(String correo);
 }

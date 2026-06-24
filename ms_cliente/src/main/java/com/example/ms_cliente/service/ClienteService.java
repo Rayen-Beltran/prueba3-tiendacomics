@@ -76,7 +76,7 @@ public class ClienteService {
     }
 
     //Buscar por Rut
-    public List<ClienteDTO> buscarPorRut(String rut) {
+    public List<ClienteDTO> buscarPorRut(Integer rut) {
         log.info("Buscando cliente por Rut: {}", rut);
         Cliente cliente = clienteRepository.findByRut(rut);
         if (cliente != null) {
