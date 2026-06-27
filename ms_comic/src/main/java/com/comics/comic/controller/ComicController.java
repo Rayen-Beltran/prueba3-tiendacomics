@@ -38,7 +38,7 @@ public class ComicController {
 
     //Buscar por Id
     @GetMapping("/{id}")
-    public ResponseEntity<ComicDTO> buscarPorId(@PathVariable Long id){
+    public ResponseEntity<ComicDTO> buscarPorId(@PathVariable Integer id){
         log.info("Buscando cómic con ID: {}", id);
         try {
             ComicDTO comic = comicService.findById(id);

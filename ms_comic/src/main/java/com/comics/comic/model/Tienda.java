@@ -33,4 +33,8 @@ public class Tienda {
     @Size(min = 10, max = 200, message = "La direccion de la tienda debe tener entre 10 y 200 caracteres")
     @Column(nullable = false, length = 200)
     private String direccion_tienda;
+
+    public Integer getId_tienda() {
+        return id_tienda;
+    }
 }

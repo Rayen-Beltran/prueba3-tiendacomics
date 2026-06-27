@@ -26,17 +26,9 @@ public class Pago {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_pago;
 
-   /*  @ManyToOne
-    @JoinColumn(name = "id_comic")
-    private Comic comic; */
-
     @ManyToOne
     @JoinColumn(name = "id_cliente")
     private Cliente cliente;
-
-   /*  @ManyToOne
-    @JoinColumn(name = "id_empleado")
-    private Empleado empleado;*/
 
 
     private String descripcion;
@@ -45,9 +37,5 @@ public class Pago {
     @Min(value = 1000, message = "El monto total debe tener un min. de 1000 pesos")
     @Column(nullable = false)
     private Integer Monto_total;
-
-   /*  @ManyToOne
-    @JoinColumn(name = "id_tienda")
-    private Tienda tienda;*/
     
 }

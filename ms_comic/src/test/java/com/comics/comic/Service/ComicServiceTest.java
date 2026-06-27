@@ -7,7 +7,6 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.times;
 
 import java.util.List;
-import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,7 +14,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.mockito.verification.VerificationMode;
 
 import com.comics.comic.model.Comic;
 import com.comics.comic.repository.ComicRepository;
@@ -42,7 +40,7 @@ public class ComicServiceTest {
 
     @Test
     public void testBuscarPorId_Exitoso() {
-        Integer idSimulado = 13;
+        Integer idSimulado = 2;
 
         String nombreAleatorio = faker.book().title();
 
@@ -59,11 +57,11 @@ public class ComicServiceTest {
 
         when(comicRepository.findById(idSimulado)).thenReturn(List.of(comicSimulado));
 
-        ComicDTO comicDTO = comicService.findById(idSimulado);
+        ComicDTO Resultado = comicService.findById(idSimulado);
 
-        assertNotNull("El cómic no debe ser nulo", comicDTO);
-        assertEquals("El ID del cómic no coincide", idSimulado, comicDTO.getId_comic());
+        assertNotNull(Resultado, "El resultado no debe ser nulo");
+        assertEquals(idSimulado, Resultado.getId(), "El ID del resultado debe coincidir con el ID simulado");
 
-        Verify(comicRepository, times(1)).findById(idSimulado);
+        verify(comicRepository, times(1)).findById(idSimulado);
     }
 }

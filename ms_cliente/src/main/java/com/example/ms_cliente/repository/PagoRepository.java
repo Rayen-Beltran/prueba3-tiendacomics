@@ -11,6 +11,4 @@ import com.example.ms_cliente.model.Pago;
 public interface PagoRepository extends JpaRepository<Pago, Integer> {
 
     List<Pago> findByClienteId(Integer idCliente);
-
-    List<Pago> findByEmpleadoId(Integer idEmpleado);
 }
