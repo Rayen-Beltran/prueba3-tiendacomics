@@ -1,0 +1,58 @@
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+      
+        - id: ms-cliente-clientes
+          uri: http://localhost:8081
+          predicates:
+            - Path=/api/v1/clientes/**
+        - id: ms-cliente-envios
+          uri: http://localhost:8081
+          predicates:
+            - Path=/api/v1/envios/**
+        - id: ms-cliente-pagos
+          uri: http://localhost:8081
+          predicates:
+            - Path=/api/v1/pago/**
+
+      
+        - id: ms-comic-comics
+          uri: http://localhost:8082
+          predicates:
+            - Path=/api/v1/comics/**
+        - id: ms-comic-autores
+          uri: http://localhost:8082
+          predicates:
+            - Path=/api/v1/autores/**
+        - id: ms-comic-editoriales
+          uri: http://localhost:8082
+          predicates:
+            - Path=/api/v1/editoriales/**
+        - id: ms-comic-categorias
+          uri: http://localhost:8082
+          predicates:
+            - Path=/api/v1/categorias/**
+
+      
+        - id: tiendas-tiendas
+          uri: http://localhost:8083
+          predicates:
+            - Path=/api/v1/tiendas/**
+        - id: tiendas-duenos
+          uri: http://localhost:8083
+          predicates:
+            - Path=/api/v1/duenos/**
+        - id: tiendas-empleados
+          uri: http://localhost:8083
+          predicates:
+            - Path=/api/v1/empleados/**
+
+server:
+  port: 8080
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
