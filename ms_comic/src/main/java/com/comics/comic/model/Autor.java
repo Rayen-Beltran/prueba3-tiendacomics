@@ -39,4 +39,8 @@ public class Autor {
     public Integer getId_autor() {
         return id;
     }
+
+    public String getNombre() {
+        return nombre;
+    }
 }

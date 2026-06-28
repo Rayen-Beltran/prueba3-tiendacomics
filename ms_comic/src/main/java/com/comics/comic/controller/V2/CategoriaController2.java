@@ -1,0 +1,79 @@
+package com.comics.comic.controller.V2;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.MediaTypes;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
+
+import com.comics.comic.DTO.CategoriaDTO;
+import com.comics.comic.assemblers.CategoriaAssembler;
+import com.comics.comic.model.Categoria;
+import com.comics.comic.service.CategoriaService;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
+@RestController("CategoriaControllerV2")
+@RequestMapping("/api/v2/categorias")
+@Slf4j
+public class CategoriaController2 {
+
+    @Autowired
+    private CategoriaService categoriaService;
+
+    @Autowired
+    private CategoriaAssembler assembler;
+
+    @GetMapping(produces = MediaTypes.HAL_JSON_VALUE)
+    public ResponseEntity<CollectionModel<EntityModel<CategoriaDTO>>> todos() {
+        List<EntityModel<CategoriaDTO>> categorias = categoriaService.obtenerTodos().stream()
+                .map(assembler::toModel)
+                .collect(Collectors.toList());
+
+        if (categorias.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+
+        return ResponseEntity.ok(CollectionModel.of(
+                categorias,
+                linkTo(methodOn(CategoriaController2.class).todos()).withSelfRel()));
+    }
+
+    @GetMapping(value = "/{id}", produces = MediaTypes.HAL_JSON_VALUE)
+    public ResponseEntity<EntityModel<CategoriaDTO>> porId(@PathVariable Integer id) {
+        try {
+            CategoriaDTO dto = categoriaService.buscarPorId(id);
+            if (dto == null) {
+                return ResponseEntity.notFound().build();
+            }
+            return ResponseEntity.ok(assembler.toModel(dto));
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PostMapping(produces = MediaTypes.HAL_JSON_VALUE)
+    public ResponseEntity<EntityModel<CategoriaDTO>> registrar(@Valid @RequestBody Categoria categoria) {
+        try {
+            Categoria savedCategoria = categoriaService.guardarCategoria(categoria);
+            CategoriaDTO dto = categoriaService.buscarPorId(savedCategoria.getId_categoria());
+            return ResponseEntity
+                    .created(linkTo(methodOn(CategoriaController2.class).porId(dto.getId_categoria())).toUri())
+                    .body(assembler.toModel(dto));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+}

@@ -60,4 +60,10 @@ public class AutorService {
         Autor autor = autorRepository.findById(id).orElseThrow(() -> new RuntimeException("¡El Autor no existe en los registros!"));
         return convertirADTO(autor);
     }
+
+    public AutorDTO getNombreAutorById(Integer id) {
+        log.info("Obteniendo nombre del autor con ID: {}", id);
+        Autor autor = autorRepository.findById(id).orElseThrow(() -> new RuntimeException("¡El Autor no existe en los registros!"));
+        return convertirADTO(autor);
+    }
 }

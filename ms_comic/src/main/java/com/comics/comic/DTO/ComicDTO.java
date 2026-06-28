@@ -10,8 +10,8 @@ public class ComicDTO {
     public String titulo;
     public String ISBN;
     public String editorial;
+    public String categoria;
     public String autor;
-    public String genero;
     public Double precio;
     public Integer stock;
     public LocalDate fechaPublicacion;
