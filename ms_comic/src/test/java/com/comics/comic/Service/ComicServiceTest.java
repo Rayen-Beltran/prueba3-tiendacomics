@@ -2,11 +2,9 @@ package com.comics.comic.Service;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.times;
 
-import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -54,8 +52,6 @@ public class ComicServiceTest {
         comicSimulado.setPrecio((double) 12083);
         comicSimulado.setStock(122);
         comicSimulado.setISBN("ada");
-
-        when(comicRepository.findById(idSimulado)).thenReturn(List.of(comicSimulado));
 
         ComicDTO Resultado = comicService.findById(idSimulado);
 

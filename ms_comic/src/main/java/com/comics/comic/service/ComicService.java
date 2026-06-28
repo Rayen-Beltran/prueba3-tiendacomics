@@ -20,10 +20,10 @@ public class ComicService {
     public List<ComicDTO> obtenerTodos() {
         log.info("Obteniendo todos los cómics");
         return comicRepository.findAll().stream()
-                 .map(this::convertirADTO)
-                 .toList();
+                .map(this::convertirADTO)
+                .toList();
     }
-    
+
     private ComicDTO convertirADTO(Comic comic) {
         ComicDTO dto = new ComicDTO();
         dto.setId_comic(comic.getId());
@@ -31,52 +31,51 @@ public class ComicService {
         return dto;
     }
 
-    //Guardar comic
-    public Comic guardarComic(Comic comic){
+    // Guardar comic
+    public Comic guardarComic(Comic comic) {
         log.info("Guardando cómic: {}", comic.getTitulo());
         return comicRepository.save(comic);
     }
 
-    //Actualizar comic
-    public Comic actualizarComic(Long id, Comic comic){
+    // Actualizar comic
+    public Comic actualizarComic(Integer id, Comic comic) {
         log.info("Actualizando cómic: {}", comic.getTitulo());
-        Comic comic1 = comicRepository.findById(id).orElseThrow(() -> new RuntimeException("¡El Cómic no existe en los registros!"));
-        
-        if(comic.getTitulo() != null){
+        Comic comic1 = comicRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("¡El Cómic no existe en los registros!"));
+
+        if (comic.getTitulo() != null) {
             comic1.setTitulo(comic.getTitulo());
         }
-        if(comic.getAutores() != null){
+        if (comic.getAutores() != null) {
             comic1.setAutores(comic.getAutores());
         }
-        if(comic.getEditoriales() != null){
+        if (comic.getEditoriales() != null) {
             comic1.setEditoriales(comic.getEditoriales());
         }
-        if(comic.getCategorias() != null){
+        if (comic.getCategorias() != null) {
             comic1.setCategorias(comic.getCategorias());
         }
         return comicRepository.save(comic1);
     }
 
-    //Eliminar comic
-    public void eliminarComic(Long id){
+    // Eliminar comic
+    public void eliminarComic(Integer id) {
         log.info("Eliminando cómic con ID: {}", id);
-        Comic comic = comicRepository.findById(id).orElseThrow(() -> new RuntimeException("¡El Cómic no existe en los registros!"));
+        Comic comic = comicRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("¡El Cómic no existe en los registros!"));
         comicRepository.delete(comic);
     }
 
-    //buscar por id
+    // buscar por id
     public ComicDTO findById(Integer id) {
         log.info("Buscando cómic con ID: {}", id);
-        List<Comic> comicOptional = comicRepository.findById(id);
-        if (comicOptional != null && !comicOptional.isEmpty()) {
-            return convertirADTO(comicOptional.get(0));
-        } else {
-            throw new RuntimeException("¡El Cómic no existe en los registros!");
-        }
+        return comicRepository.findById(id)
+                .map(this::convertirADTO)
+                .orElseThrow(() -> new RuntimeException("¡El Cómic no existe en los registros!"));
     }
 
-    //buscar por nombre exacto
-    public ComicDTO buscarPorNombreExacto(String titulo){
+    // buscar por nombre exacto
+    public ComicDTO buscarPorNombreExacto(String titulo) {
         log.info("Buscando cómic con título exacto: {}", titulo);
         Comic comic = comicRepository.buscarPorNombreExacto(titulo);
         if (comic == null) {
