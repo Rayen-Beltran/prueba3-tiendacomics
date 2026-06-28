@@ -8,7 +8,7 @@ import org.springframework.hateoas.server.RepresentationModelAssembler;
 import org.springframework.stereotype.Component;
 
 import com.example.ms_cliente.DTO.PagoDTO;
-import com.example.ms_cliente.controller.PagoController;
+import com.example.ms_cliente.controller.v1.PagoController;
 
 @Component
 public class PagoModelAssembler implements RepresentationModelAssembler<PagoDTO, EntityModel<PagoDTO>> {

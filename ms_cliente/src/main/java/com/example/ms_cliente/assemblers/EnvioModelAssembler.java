@@ -8,7 +8,7 @@ import org.springframework.hateoas.server.RepresentationModelAssembler;
 import org.springframework.stereotype.Component;
 
 import com.example.ms_cliente.DTO.EnvioDTO;
-import com.example.ms_cliente.controller.EnvioController;
+import com.example.ms_cliente.controller.v1.EnvioController;
 
 @Component
 public class EnvioModelAssembler implements RepresentationModelAssembler<EnvioDTO, EntityModel<EnvioDTO>> {

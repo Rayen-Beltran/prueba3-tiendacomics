@@ -8,7 +8,7 @@ import org.springframework.hateoas.server.RepresentationModelAssembler;
 import org.springframework.stereotype.Component;
 
 import com.example.ms_cliente.DTO.ClienteDTO;
-import com.example.ms_cliente.controller.ClienteController;
+import com.example.ms_cliente.controller.v1.ClienteController;
 
 @Component
 public class ClienteModelAssembler implements RepresentationModelAssembler<ClienteDTO, EntityModel<ClienteDTO>> {
