@@ -27,3 +27,11 @@ CREATE TABLE tiendas (
    CONSTRAINT fk_tiendas_stock FOREIGN KEY (id_stock_comics) REFERENCES stock_comics(id)
 
 ); INSERT INTO tiendas (nombre, direccion, id_duenos, id_empleados, id_stock_comics) VALUES ('LOS CRACKS', 'la Farfana 1150',1,1,1);
+
+CREATE TABLE stock_comics (
+    id_stock INT AUTO_INCREMENT PRIMARY KEY,
+    id_tienda INT,
+    id_comic INT NOT NULL, -- Referencia al microservicio de cómics (Sin FK física)
+    stock INT NOT NULL DEFAULT 0,
+    CONSTRAINT fk_stock_tienda FOREIGN KEY (id_tienda) REFERENCES tienda(id_tienda)
+);

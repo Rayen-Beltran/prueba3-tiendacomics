@@ -2,12 +2,15 @@ package com.example.tiendas.assemblers;
 
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
+import org.springframework.stereotype.Component;
+
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
 import com.example.tiendas.DTO.EmpleadoDTO;
 import com.example.tiendas.controller.V2.EmpleadoControllerV2;
 
+@Component
 public class EmpleadoModelAssembler implements RepresentationModelAssembler<EmpleadoDTO, EntityModel<EmpleadoDTO>> {
 
     @Override

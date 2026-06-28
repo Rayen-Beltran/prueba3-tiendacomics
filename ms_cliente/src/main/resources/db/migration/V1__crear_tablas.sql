@@ -12,8 +12,18 @@ CREATE TABLE clientes (
 
 CREATE TABLE pago (
     id_pago INT AUTO_INCREMENT PRIMARY KEY,
-    descripcion VARCHAR(255) NOT NULL,
-    montoTotal INT NOT NULL
+    id_cliente INT,
+    id_envio INT,
+    id_comic INT NOT NULL,    
+    id_empleado INT NOT NULL,   
+    id_tienda INT NOT NULL,     
+    descripcion VARCHAR(255),
+    monto_total DECIMAL(10,2) NOT NULL,
+    nombre_tienda VARCHAR(100),
+    direccion_tienda VARCHAR(255),
+    direccion_cliente VARCHAR(255),
+    CONSTRAINT fk_pago_cliente FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente),
+    CONSTRAINT fk_pago_envio FOREIGN KEY (id_envio) REFERENCES envio(id_envio)
 );
 
 CREATE TABLE envios (
@@ -22,6 +32,5 @@ CREATE TABLE envios (
     fechaEntrega DATE NOT NULL,
     tipoEnvio VARCHAR(20),
     sucursal VARCHAR(20),
-    id_pago INT,
-    FOREIGN KEY (id_pago) REFERENCES pago(id_pago)
+    id_pago INT
 );
