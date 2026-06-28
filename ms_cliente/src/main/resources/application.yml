@@ -13,8 +13,6 @@ spring:
   flyway:
     enabled: true
     baseline-on-migrate: true
-  hateoas:
-    use-hal-as-default-json-media-type: false
 
 server:
   port: 8081
@@ -25,8 +23,6 @@ springdoc:
   api-docs:
     path: /api-docs
     enabled: true
-  swagger-ui:
-    disable-swagger-default-url: true
 
 eureka:
   client:
