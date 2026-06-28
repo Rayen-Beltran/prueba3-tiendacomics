@@ -9,7 +9,7 @@ public class WebClientConfig {
     @Bean
     public WebClient webClientComic() {
         return WebClient.builder()
-            .baseUrl("http://localhost:8082")
+            .baseUrl("http://localhost:8083")
             .build();
     }
 }
