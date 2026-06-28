@@ -25,20 +25,20 @@ public class ComicController {
     @Autowired
     private ComicService comicService;
 
-    //Mostrar los comics
+    // Mostrar los comics
     @GetMapping
-    public ResponseEntity<List<ComicDTO>> todosLosComics(){
+    public ResponseEntity<List<ComicDTO>> todosLosComics() {
         log.info("Obteniendo todos los cómics");
         List<ComicDTO> comics = comicService.obtenerTodos();
-        if(comics.isEmpty()) {
+        if (comics.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(comics, HttpStatus.OK);
     }
 
-    //Buscar por Id
+    // Buscar por Id
     @GetMapping("/{id}")
-    public ResponseEntity<ComicDTO> buscarPorId(@PathVariable Integer id){
+    public ResponseEntity<ComicDTO> buscarPorId(@PathVariable Integer id) {
         log.info("Buscando cómic con ID: {}", id);
         try {
             ComicDTO comic = comicService.findById(id);
@@ -49,17 +49,17 @@ public class ComicController {
         }
     }
 
-    //Guardar comic
+    // Guardar comic
     @PostMapping
-    public ResponseEntity<Comic> guardarComic(@Valid @RequestBody Comic comic){
+    public ResponseEntity<Comic> guardarComic(@Valid @RequestBody Comic comic) {
         log.info("Guardando cómic: {}", comic.getTitulo());
         Comic nuevoComic = comicService.guardarComic(comic);
         return new ResponseEntity<>(nuevoComic, HttpStatus.CREATED);
     }
 
-    //Actualizar comic
+    // Actualizar comic
     @PutMapping("/{id}")
-    public ResponseEntity<Comic> actualizarComic(@PathVariable Long id, @Valid @RequestBody Comic comic){
+    public ResponseEntity<Comic> actualizarComic(@PathVariable Integer id, @Valid @RequestBody Comic comic) {
         log.info("Actualizando cómic con ID: {}", id);
         try {
             Comic comicActualizado = comicService.actualizarComic(id, comic);
@@ -70,9 +70,9 @@ public class ComicController {
         }
     }
 
-    //Eliminar comic
+    // Eliminar comic
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminarComic(@PathVariable Long id){
+    public ResponseEntity<Void> eliminarComic(@PathVariable Integer id) {
         log.info("Eliminando cómic con ID: {}", id);
         try {
             comicService.eliminarComic(id);
@@ -81,6 +81,6 @@ public class ComicController {
             log.error("Error al eliminar cómic con ID: {}: {}", id, e.getMessage());
             return ResponseEntity.notFound().build();
         }
-    }        
-    
+    }
+
 }

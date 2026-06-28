@@ -57,7 +57,7 @@ public class Comic {
 
     @ManyToMany
     @JoinTable(name = "comic_editorial", joinColumns = @JoinColumn(name = "id_comic"), inverseJoinColumns = @JoinColumn(name = "id_editorial"))
-    private Editorial editoriales;
+    private List<Editorial> editoriales;
 
     @ManyToMany
     @JoinTable(name = "comic_categoria", joinColumns = @JoinColumn(name = "id_comic"), inverseJoinColumns = @JoinColumn(name = "id_categoria"))
@@ -70,13 +70,5 @@ public class Comic {
     @ManyToMany
     @JoinTable(name = "comic_tienda", joinColumns = @JoinColumn(name = "comic_id"), inverseJoinColumns = @JoinColumn(name = "tienda_id"))
     private List<Tienda> tiendas;
-
-    public Object getId_comic() {
-        return id;
-    }
-
-    public Object getNombre() {
-        return titulo;
-    }
 
 }
