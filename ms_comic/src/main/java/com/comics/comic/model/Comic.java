@@ -41,11 +41,6 @@ public class Comic {
     @Column(nullable = false, length = 13)
     private String ISBN;
 
-    @NotBlank(message = "El genero es obligatorio")
-    @Size(min = 3, max = 100, message = "El genero debe tener entre 3 y 100 caracteres")
-    @Column(nullable = false, length = 100)
-    private String genero;
-
     @NotNull(message = "El precio es obligatorio")
     @Min(value = 0, message = "El precio no puede ser negativo")
     @Column(nullable = false)
@@ -62,7 +57,7 @@ public class Comic {
 
     @ManyToMany
     @JoinTable(name = "comic_editorial", joinColumns = @JoinColumn(name = "id_comic"), inverseJoinColumns = @JoinColumn(name = "id_editorial"))
-    private List<Editorial> editoriales;
+    private Editorial editoriales;
 
     @ManyToMany
     @JoinTable(name = "comic_categoria", joinColumns = @JoinColumn(name = "id_comic"), inverseJoinColumns = @JoinColumn(name = "id_categoria"))
@@ -78,6 +73,10 @@ public class Comic {
 
     public Object getId_comic() {
         return id;
+    }
+
+    public Object getNombre() {
+        return titulo;
     }
 
 }
