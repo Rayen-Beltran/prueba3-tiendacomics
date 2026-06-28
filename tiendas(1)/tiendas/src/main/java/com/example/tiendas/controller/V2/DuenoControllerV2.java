@@ -1,4 +1,4 @@
-package com.example.tiendas.controller;
+package com.example.tiendas.controller.V2;
 
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;

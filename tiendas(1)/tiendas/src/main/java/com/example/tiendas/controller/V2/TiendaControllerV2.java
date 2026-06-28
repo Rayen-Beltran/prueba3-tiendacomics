@@ -1,4 +1,4 @@
-package com.example.tiendas.controller;
+package com.example.tiendas.controller.V2;
 
 import java.util.stream.Collectors;
 

@@ -7,7 +7,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 import com.example.tiendas.DTO.DuenoDTO;
-import com.example.tiendas.controller.DuenoControllerV2;
+import com.example.tiendas.controller.V2.DuenoControllerV2;
 
 @Component
 public class DuenoModelAssembler implements RepresentationModelAssembler<DuenoDTO, EntityModel<DuenoDTO>> {

@@ -6,8 +6,8 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
 import com.example.tiendas.DTO.TiendaDTO;
-import com.example.tiendas.controller.EmpleadoControllerV2;
-import com.example.tiendas.controller.TiendaControllerV2;
+import com.example.tiendas.controller.V2.EmpleadoControllerV2;
+import com.example.tiendas.controller.V2.TiendaControllerV2;
 
 public class TiendaModelAssembler implements RepresentationModelAssembler<TiendaDTO, EntityModel<TiendaDTO>>{
 
