@@ -13,6 +13,8 @@ spring:
   flyway:
     enabled: true
     baseline-on-migrate: true
+    out-of-order: true
+    validate-on-migrate: false
 
 server:
   port: 8081
@@ -25,7 +27,9 @@ springdoc:
     enabled: true
     servers:
     - url: http://localhost:8081
-      description: ms_cliente
+      description: ms_cliente directo
+    - url: http://localhost:8080/api/v1/clientes
+      description: ms_cliente via Api Gateway
 
 eureka:
   client:

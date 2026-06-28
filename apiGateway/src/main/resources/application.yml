@@ -4,60 +4,57 @@ spring:
   cloud:
     gateway:
       routes:
-      
-        - id: ms-cliente-clientes
-          uri: http://localhost:8081
+        - id: ms-cliente
+          uri: lb://ms_cliente
           predicates:
-            - Path=/api/v1/clientes/**
-        - id: ms-cliente-envios
-          uri: http://localhost:8081
-          predicates:
-            - Path=/api/v1/envios/**
-        - id: ms-cliente-pagos
-          uri: http://localhost:8081
-          predicates:
-            - Path=/api/v1/pago/**
+            - Path=/api/v1/clientes/**,/api/v1/envios/**,/api/v1/pago/**
 
-      
-        - id: ms-comic-comics
-          uri: http://localhost:8082
+        - id: ms-comic
+          uri: lb://ms_comic
           predicates:
-            - Path=/api/v1/comics/**
-        - id: ms-comic-autores
-          uri: http://localhost:8082
-          predicates:
-            - Path=/api/v1/autores/**
-        - id: ms-comic-editoriales
-          uri: http://localhost:8082
-          predicates:
-            - Path=/api/v1/editoriales/**
-        - id: ms-comic-categorias
-          uri: http://localhost:8082
-          predicates:
-            - Path=/api/v1/categorias/**
+            - Path=/api/v1/comics/**,/api/v1/autores/**,/api/v1/editoriales/**,/api/v1/categorias/**
 
-      
-        - id: tiendas-tiendas
-          uri: http://localhost:8083
+        - id: tiendas
+          uri: lb://tiendas
           predicates:
-            - Path=/api/v1/tiendas/**
-        - id: tiendas-duenos
-          uri: http://localhost:8083
+            - Path=/api/v1/tiendas/**,/api/v1/duenos/**,/api/v1/empleados/**
+
+        - id: ms-cliente-docs
+          uri: lb://ms_cliente
           predicates:
-            - Path=/api/v1/duenos/**
-        - id: tiendas-empleados
-          uri: http://localhost:8083
+            - Path=/ms_cliente/v3/api-docs
+
+        - id: ms-comic-docs
+          uri: lb://ms_comic
           predicates:
-            - Path=/api/v1/empleados/**
+            - Path=/ms_comic/v3/api-docs
+
+        - id: tiendas-docs
+          uri: lb://tiendas
+          predicates:
+            - Path=/tiendas/v3/api-docs
 
 server:
   port: 8080
 
-logging:
-  level:
-    org.springframework.cloud.gateway: DEBUG
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true
+    urls:
+      - name: ms_cliente
+        url: /ms_cliente/v3/api-docs
+      - name: ms_comic
+        url: /ms_comic/v3/api-docs
+      - name: tiendas
+        url: /tiendas/v3/api-docs
+  api-docs:
+    path: /v3/api-docs
+    enabled: true
 
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true

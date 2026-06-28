@@ -16,7 +16,7 @@ spring:
     out-of-order: true
 
 server:
-  port: 8082
+  port: 8083
 
 springdoc:
   swagger-ui:
@@ -24,6 +24,11 @@ springdoc:
   api-docs:
     path: /api-docs
     enabled: true
+  servers:
+    - url: http://localhost:8083
+      description: tiendas directo
+    - url: http://localhost:8080/api/v1/tiendas
+      description: tiendas via API Gateway
 
 eureka:
   client:
