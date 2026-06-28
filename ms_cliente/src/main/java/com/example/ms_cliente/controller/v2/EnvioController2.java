@@ -13,33 +13,33 @@ import org.springframework.hateoas.MediaTypes;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.ms_cliente.DTO.ClienteDTO;
-import com.example.ms_cliente.assemblers.ClienteModelAssembler;
-import com.example.ms_cliente.model.Cliente;
-import com.example.ms_cliente.service.ClienteService;
+import com.example.ms_cliente.DTO.EnvioDTO;
+import com.example.ms_cliente.assemblers.EnvioModelAssembler;
+import com.example.ms_cliente.model.Envio;
+import com.example.ms_cliente.service.EnvioService;
 
 import jakarta.validation.Valid;
 
-@RestController("clienteControllerV2")
-@RequestMapping("/api/v2/clientes")
-public class ClienteController2 {
+@RestController("envioControllerV2")
+@RequestMapping("/api/v2/envios")
+public class EnvioController2 {
 
-    @Autowired private ClienteService clienteService;
-    @Autowired private ClienteModelAssembler assembler;
+    @Autowired private EnvioService envioService;
+    @Autowired private EnvioModelAssembler assembler;
 
     @GetMapping(produces = MediaTypes.HAL_JSON_VALUE)
-    public ResponseEntity<CollectionModel<EntityModel<ClienteDTO>>> todos() {
-        List<EntityModel<ClienteDTO>> clientes = clienteService.obtenerTodos()
+    public ResponseEntity<CollectionModel<EntityModel<EnvioDTO>>> todos() {
+        List<EntityModel<EnvioDTO>> envios = envioService.obtenerTodos()
             .stream().map(assembler::toModel).collect(Collectors.toList());
-        if (clientes.isEmpty()) return ResponseEntity.noContent().build();
-        return ResponseEntity.ok(CollectionModel.of(clientes,
-            linkTo(methodOn(ClienteController2.class).todos()).withSelfRel()));
+        if (envios.isEmpty()) return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(CollectionModel.of(envios,
+            linkTo(methodOn(EnvioController2.class).todos()).withSelfRel()));
     }
 
     @GetMapping(value = "/{id}", produces = MediaTypes.HAL_JSON_VALUE)
-    public ResponseEntity<EntityModel<ClienteDTO>> porId(@PathVariable Integer id) {
+    public ResponseEntity<EntityModel<EnvioDTO>> porId(@PathVariable Integer id) {
         try {
-            ClienteDTO dto = clienteService.buscarPorId(id);
+            EnvioDTO dto = envioService.buscarPorId(id);
             if (dto == null) return ResponseEntity.notFound().build();
             return ResponseEntity.ok(assembler.toModel(dto));
         } catch (RuntimeException e) {
@@ -48,12 +48,12 @@ public class ClienteController2 {
     }
 
     @PostMapping(produces = MediaTypes.HAL_JSON_VALUE)
-    public ResponseEntity<EntityModel<ClienteDTO>> registrar(@Valid @RequestBody Cliente cliente) {
+    public ResponseEntity<EntityModel<EnvioDTO>> registrar(@Valid @RequestBody Envio envio) {
         try {
-            Cliente guardado = clienteService.guardarCliente(cliente);
-            ClienteDTO dto = clienteService.buscarPorId(guardado.getId());
+            Envio guardado = envioService.guardarEnvio(envio);
+            EnvioDTO dto = envioService.buscarPorId(guardado.getIdEnvio());
             return ResponseEntity
-                .created(linkTo(methodOn(ClienteController2.class).porId(dto.getId_cliente())).toUri())
+                .created(linkTo(methodOn(EnvioController2.class).porId(dto.getIdEnvio())).toUri())
                 .body(assembler.toModel(dto));
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();

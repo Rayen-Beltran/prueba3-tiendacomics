@@ -1,4 +1,6 @@
-
+cd ms_cliente
+cd ms_comic
+cd tiendas(1)
 .\mvnw spring-boot:run
 
 
@@ -10,3 +12,4 @@
  Maximiiano Jimenez: ms_comic
 
  Sergio Torres: ms_tiendas
+
