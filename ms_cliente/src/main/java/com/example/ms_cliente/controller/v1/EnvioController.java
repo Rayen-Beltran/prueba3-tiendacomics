@@ -1,4 +1,4 @@
-package com.example.ms_cliente.controller;
+package com.example.ms_cliente.controller.v1;
 
 import java.util.List;
 

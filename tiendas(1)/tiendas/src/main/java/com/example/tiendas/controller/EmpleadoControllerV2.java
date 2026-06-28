@@ -2,7 +2,7 @@ package com.example.tiendas.controller;
 
 import java.util.stream.Collectors;
 
-import org.apache.hc.core5.http.HttpStatus;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
@@ -23,9 +23,7 @@ import com.example.tiendas.DTO.EmpleadoDTO;
 import com.example.tiendas.assemblers.EmpleadoModelAssembler;
 import com.example.tiendas.model.Empleado;
 import com.example.tiendas.service.EmpleadoService;
-import com.github.andrewoma.dexx.collection.List;
-import java.util.ArrayList;
-import java.util.stream.Collectors;
+
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import jakarta.validation.Valid;
