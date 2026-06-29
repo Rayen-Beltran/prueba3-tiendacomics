@@ -42,11 +42,11 @@ springdoc:
     path: /swagger-ui.html
     enabled: true
     urls:
-      - name: ms_cliente
+      - name: Cliente
         url: /ms_cliente/v3/api-docs
-      - name: ms_comic
+      - name: Comics
         url: /ms_comic/v3/api-docs
-      - name: tiendas
+      - name: Tiendas
         url: /tiendas/v3/api-docs
   api-docs:
     path: /v3/api-docs
