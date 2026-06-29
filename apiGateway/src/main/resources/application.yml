@@ -4,35 +4,26 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: ms-cliente
-          uri: lb://ms_cliente
-          predicates:
-            - Path=/api/v1/clientes/**,/api/v1/envios/**,/api/v1/pago/**
-
-        - id: ms-comic
-          uri: lb://ms_comic
-          predicates:
-            - Path=/api/v1/comics/**,/api/v1/autores/**,/api/v1/editoriales/**,/api/v1/categorias/**
-
-        - id: tiendas
-          uri: lb://tiendas
-          predicates:
-            - Path=/api/v1/tiendas/**,/api/v1/duenos/**,/api/v1/empleados/**
-
         - id: ms-cliente-docs
           uri: lb://ms_cliente
           predicates:
             - Path=/ms_cliente/v3/api-docs
+          filters:
+            - RewritePath=/ms_cliente/v3/api-docs, /v3/api-docs
 
         - id: ms-comic-docs
           uri: lb://ms_comic
           predicates:
             - Path=/ms_comic/v3/api-docs
+          filters:
+            - RewritePath=/ms_comic/v3/api-docs, /v3/api-docs
 
         - id: tiendas-docs
           uri: lb://tiendas
           predicates:
             - Path=/tiendas/v3/api-docs
+          filters:
+            - RewritePath=/tiendas/v3/api-docs, /v3/api-docs
 
 server:
   port: 8080

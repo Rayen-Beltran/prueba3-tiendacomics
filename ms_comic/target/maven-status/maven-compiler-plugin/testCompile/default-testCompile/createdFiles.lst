@@ -1,0 +1,6 @@
+com\comics\comic\Service\TiendaServiceTest.class
+com\comics\comic\Service\CategoriaServiceTest.class
+com\comics\comic\Service\EditorialServiceTest.class
+com\comics\comic\Service\AutorServiceTest.class
+com\comics\comic\ComicApplicationTests.class
+com\comics\comic\Service\ComicServiceTest.class
