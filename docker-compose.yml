@@ -109,3 +109,5 @@ networks:
   network-jedi:
     driver: bridge
 
+volumes:
+  db_data:
