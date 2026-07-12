@@ -30,3 +30,5 @@ http://localhost:8081/doc/swagger-ui/swagger-ui/index.html#/
 
 API Gateway (puerto 8080)
 Punto de entrada único al sistema. Enruta las peticiones hacia el microservicio correspondiente según la URL y balancea la carga usando Eureka.
+
+Se agrego los docker en cada microservicio y el compose.yml en general.
